@@ -7,12 +7,12 @@ import { Card } from '@/components/ui/card';
 import { neighborhoods } from '@/data/neighborhoods';
 
 interface MapViewProps {
-  onNeighborhoodSelect: (neighborhood: any) => void;
-  selectedNeighborhood: any;
+  onPropertySelect: (property: any) => void;
+  selectedProperty: any;
   properties: any[];
 }
 
-const MapView: React.FC<MapViewProps> = ({ onNeighborhoodSelect, selectedNeighborhood, properties }) => {
+const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, properties }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapboxToken, setMapboxToken] = useState('');
@@ -112,19 +112,18 @@ const MapView: React.FC<MapViewProps> = ({ onNeighborhoodSelect, selectedNeighbo
           }
         });
 
-        // Add click event to neighborhood layers
-        map.current!.on('click', `neighborhood-fill-${index}`, () => {
-          onNeighborhoodSelect(neighborhood);
-        });
+        // Remove click events for neighborhoods
+        // map.current!.on('click', `neighborhood-fill-${index}`, () => {
+        //   onNeighborhoodSelect(neighborhood);
+        // });
 
-        // Change cursor to pointer when hovering over neighborhoods
-        map.current!.on('mouseenter', `neighborhood-fill-${index}`, () => {
-          map.current!.getCanvas().style.cursor = 'pointer';
-        });
+        // map.current!.on('mouseenter', `neighborhood-fill-${index}`, () => {
+        //   map.current!.getCanvas().style.cursor = 'pointer';
+        // });
 
-        map.current!.on('mouseleave', `neighborhood-fill-${index}`, () => {
-          map.current!.getCanvas().style.cursor = '';
-        });
+        // map.current!.on('mouseleave', `neighborhood-fill-${index}`, () => {
+        //   map.current!.getCanvas().style.cursor = '';
+        // });
       });
 
       // Add property markers
@@ -137,9 +136,9 @@ const MapView: React.FC<MapViewProps> = ({ onNeighborhoodSelect, selectedNeighbo
             .setLngLat([property.lng, property.lat])
             .addTo(map.current!);
 
-          // marker.getElement().addEventListener('click', () => {
-          //   onPropertySelect(property);
-          // });
+          marker.getElement().addEventListener('click', () => {
+            onPropertySelect(property);
+          });
           console.log(`Added marker ${index + 1}/${properties.length}`);
         } catch (error) {
           console.error(`Error adding marker for property ${property.id}:`, error);
@@ -222,7 +221,7 @@ const MapView: React.FC<MapViewProps> = ({ onNeighborhoodSelect, selectedNeighbo
       {/* Neighborhood Legend */}
       <div className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs z-10 shadow-lg">
         <h3 className="text-sm font-semibold mb-3 text-foreground">Neighborhoods</h3>
-        <p className="text-xs text-muted-foreground mb-2">Click on any neighborhood to view details</p>
+        <p className="text-xs text-muted-foreground mb-2">Click on property pins to view details</p>
         <div className="space-y-2 max-h-64 overflow-y-auto">
           {neighborhoods.map((neighborhood, index) => (
             <div key={index} className="flex items-center gap-2">
@@ -236,22 +235,45 @@ const MapView: React.FC<MapViewProps> = ({ onNeighborhoodSelect, selectedNeighbo
         </div>
       </div>
 
-      {/* Neighborhood Info Panel */}
-      {selectedNeighborhood && (
+      {/* Property Info Panel */}
+      {selectedProperty && (
         <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-sm z-10 shadow-lg">
-          <div className="flex items-center gap-3 mb-3">
-            <div 
-              className="w-4 h-4 rounded-sm border border-border/20" 
-              style={{ backgroundColor: selectedNeighborhood.color }}
-            />
-            <h3 className="text-lg font-semibold text-foreground">{selectedNeighborhood.name}</h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-lg font-semibold text-foreground">{selectedProperty.title}</h3>
+            {selectedProperty.isNew && (
+              <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">NEW</span>
+            )}
           </div>
-          <div className="space-y-2 text-sm text-muted-foreground">
-            <p><strong>Bounds:</strong></p>
-            <p>North: {selectedNeighborhood.bounds[1][0].toFixed(4)}</p>
-            <p>South: {selectedNeighborhood.bounds[0][0].toFixed(4)}</p>
-            <p>East: {selectedNeighborhood.bounds[1][1].toFixed(4)}</p>
-            <p>West: {selectedNeighborhood.bounds[0][1].toFixed(4)}</p>
+          <div className="space-y-3">
+            <img 
+              src={selectedProperty.image} 
+              alt={selectedProperty.title}
+              className="w-full h-32 object-cover rounded"
+            />
+            <div className="space-y-2 text-sm">
+              <p className="text-muted-foreground">{selectedProperty.address}</p>
+              <p className="text-2xl font-bold text-green-600">${selectedProperty.price.toLocaleString()}/month</p>
+              <div className="flex gap-4 text-muted-foreground">
+                <span>{selectedProperty.bedrooms} bed</span>
+                <span>{selectedProperty.bathrooms} bath</span>
+                <span>{selectedProperty.sqft} sqft</span>
+              </div>
+              {selectedProperty.amenities && (
+                <div className="space-y-1">
+                  <p className="font-medium">Amenities:</p>
+                  <div className="flex flex-wrap gap-1">
+                    {selectedProperty.amenities.slice(0, 4).map((amenity: string, index: number) => (
+                      <span key={index} className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded">
+                        {amenity}
+                      </span>
+                    ))}
+                    {selectedProperty.amenities.length > 4 && (
+                      <span className="text-xs text-muted-foreground">+{selectedProperty.amenities.length - 4} more</span>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

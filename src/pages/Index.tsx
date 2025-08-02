@@ -4,10 +4,10 @@ import MapView from '@/components/MapView';
 import { properties } from '@/data/properties';
 
 const Index = () => {
-  const [selectedNeighborhood, setSelectedNeighborhood] = useState(null);
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
-  const handleNeighborhoodSelect = (neighborhood: any) => {
-    setSelectedNeighborhood(neighborhood);
+  const handlePropertySelect = (property: any) => {
+    setSelectedProperty(property);
   };
 
   return (
@@ -19,8 +19,8 @@ const Index = () => {
       /> */}
       <div className="flex-1">
         <MapView
-          onNeighborhoodSelect={handleNeighborhoodSelect}
-          selectedNeighborhood={selectedNeighborhood}
+          onPropertySelect={handlePropertySelect}
+          selectedProperty={selectedProperty}
           properties={properties}
         />
       </div>
