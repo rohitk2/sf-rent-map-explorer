@@ -237,42 +237,27 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
 
       {/* Property Info Panel */}
       {selectedProperty && (
-        <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-sm z-10 shadow-lg">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-foreground">{selectedProperty.title}</h3>
+        <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm border rounded-lg p-3 max-w-xs z-10 shadow-lg">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-semibold text-foreground truncate">{selectedProperty.title}</h3>
             {selectedProperty.isNew && (
-              <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">NEW</span>
+              <span className="bg-green-500 text-white text-xs px-1.5 py-0.5 rounded ml-2">NEW</span>
             )}
           </div>
-          <div className="space-y-3">
+          <div className="space-y-2">
             <img 
               src={selectedProperty.image} 
               alt={selectedProperty.title}
-              className="w-full h-32 object-cover rounded"
+              className="w-full h-20 object-cover rounded"
             />
-            <div className="space-y-2 text-sm">
-              <p className="text-muted-foreground">{selectedProperty.address}</p>
-              <p className="text-2xl font-bold text-green-600">${selectedProperty.price.toLocaleString()}/month</p>
-              <div className="flex gap-4 text-muted-foreground">
+            <div className="space-y-1 text-xs">
+              <p className="text-muted-foreground text-xs">{selectedProperty.address}</p>
+              <p className="text-lg font-bold text-green-600">${selectedProperty.price.toLocaleString()}/mo</p>
+              <div className="flex gap-3 text-muted-foreground">
                 <span>{selectedProperty.bedrooms} bed</span>
                 <span>{selectedProperty.bathrooms} bath</span>
                 <span>{selectedProperty.sqft} sqft</span>
               </div>
-              {selectedProperty.amenities && (
-                <div className="space-y-1">
-                  <p className="font-medium">Amenities:</p>
-                  <div className="flex flex-wrap gap-1">
-                    {selectedProperty.amenities.slice(0, 4).map((amenity: string, index: number) => (
-                      <span key={index} className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded">
-                        {amenity}
-                      </span>
-                    ))}
-                    {selectedProperty.amenities.length > 4 && (
-                      <span className="text-xs text-muted-foreground">+{selectedProperty.amenities.length - 4} more</span>
-                    )}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
