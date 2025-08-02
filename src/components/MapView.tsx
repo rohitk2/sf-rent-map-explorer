@@ -130,13 +130,22 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
       console.log('Adding property markers:', properties.length);
       properties.forEach((property, index) => {
         try {
-          const marker = new mapboxgl.Marker({
-            color: getNeighborhoodColor(property.address),
-          })
+          // Create custom food icon element
+          const el = document.createElement('div');
+          el.className = 'food-marker';
+          el.innerHTML = '🍽️';
+          el.style.cssText = `
+            font-size: 24px;
+            cursor: pointer;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            transform: translate(-50%, -50%);
+          `;
+
+          const marker = new mapboxgl.Marker(el)
             .setLngLat([property.lng, property.lat])
             .addTo(map.current!);
 
-          marker.getElement().addEventListener('click', () => {
+          el.addEventListener('click', () => {
             onPropertySelect(property);
           });
           console.log(`Added marker ${index + 1}/${properties.length}`);
@@ -237,26 +246,25 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
 
       {/* Property Info Panel */}
       {selectedProperty && (
-        <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm border rounded-lg p-3 max-w-xs z-10 shadow-lg">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-background/95 backdrop-blur-sm border rounded-lg p-3 max-w-xs w-80 z-10 shadow-lg">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-semibold text-foreground truncate">{selectedProperty.title}</h3>
-            {selectedProperty.isNew && (
-              <span className="bg-green-500 text-white text-xs px-1.5 py-0.5 rounded ml-2">NEW</span>
-            )}
+            <h3 className="text-sm font-semibold text-foreground truncate">{selectedProperty.name}</h3>
+            <button 
+              onClick={() => onPropertySelect(null)}
+              className="text-muted-foreground hover:text-foreground text-lg leading-none"
+            >
+              ×
+            </button>
           </div>
           <div className="space-y-2">
-            <img 
-              src={selectedProperty.image} 
-              alt={selectedProperty.title}
-              className="w-full h-20 object-cover rounded"
-            />
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">🍽️</span>
+              <span className="text-sm font-medium text-green-600">Free Service/mo</span>
+            </div>
             <div className="space-y-1 text-xs">
               <p className="text-muted-foreground text-xs">{selectedProperty.address}</p>
-              <p className="text-lg font-bold text-green-600">${selectedProperty.price.toLocaleString()}/mo</p>
               <div className="flex gap-3 text-muted-foreground">
-                <span>{selectedProperty.bedrooms} bed</span>
-                <span>{selectedProperty.bathrooms} bath</span>
-                <span>{selectedProperty.sqft} sqft</span>
+                <span>Food Distribution Center</span>
               </div>
             </div>
           </div>
