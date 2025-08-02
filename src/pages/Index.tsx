@@ -1,11 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState } from 'react';
+import MapView from '@/components/MapView';
+import PropertySidebar from '@/components/PropertySidebar';
+import { properties } from '@/data/properties';
 
 const Index = () => {
+  const [selectedProperty, setSelectedProperty] = useState(null);
+
+  const handlePropertySelect = (property: any) => {
+    setSelectedProperty(property);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="h-screen flex bg-background">
+      <PropertySidebar
+        properties={properties}
+        onPropertySelect={handlePropertySelect}
+        selectedProperty={selectedProperty}
+      />
+      <div className="flex-1">
+        <MapView
+          onPropertySelect={handlePropertySelect}
+          properties={properties}
+        />
       </div>
     </div>
   );
