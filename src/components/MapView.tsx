@@ -17,41 +17,69 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
   const [showTokenInput, setShowTokenInput] = useState(true);
 
   const initializeMap = () => {
-    if (!mapContainer.current || !mapboxToken) return;
+    console.log('Initializing map with token:', mapboxToken ? 'Token present' : 'No token');
+    if (!mapContainer.current || !mapboxToken) {
+      console.log('Cannot initialize map - missing container or token');
+      return;
+    }
 
-    mapboxgl.accessToken = mapboxToken;
-    
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [-122.4194, 37.7749], // San Francisco center
-      zoom: 12,
-    });
+    try {
+      mapboxgl.accessToken = mapboxToken;
+      console.log('Creating map...');
+      
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/light-v11',
+        center: [-122.4194, 37.7749], // San Francisco center
+        zoom: 12,
+      });
 
-    // Add navigation controls
-    map.current.addControl(
-      new mapboxgl.NavigationControl(),
-      'top-right'
-    );
+      console.log('Map created successfully');
+    } catch (error) {
+      console.error('Error creating map:', error);
+      return;
+    }
 
-    // Add property markers
-    properties.forEach((property) => {
-      const marker = new mapboxgl.Marker({
-        color: 'hsl(142, 71%, 45%)',
-      })
-        .setLngLat([property.lng, property.lat])
-        .addTo(map.current!);
+    // Add navigation controls after map loads
+    map.current.on('load', () => {
+      console.log('Map loaded successfully');
+      map.current!.addControl(
+        new mapboxgl.NavigationControl(),
+        'top-right'
+      );
 
-      marker.getElement().addEventListener('click', () => {
-        onPropertySelect(property);
+      // Add property markers
+      console.log('Adding property markers:', properties.length);
+      properties.forEach((property, index) => {
+        try {
+          const marker = new mapboxgl.Marker({
+            color: 'hsl(142, 71%, 45%)',
+          })
+            .setLngLat([property.lng, property.lat])
+            .addTo(map.current!);
+
+          marker.getElement().addEventListener('click', () => {
+            onPropertySelect(property);
+          });
+          console.log(`Added marker ${index + 1}/${properties.length}`);
+        } catch (error) {
+          console.error(`Error adding marker for property ${property.id}:`, error);
+        }
       });
     });
   };
 
   const handleTokenSubmit = () => {
-    if (mapboxToken) {
+    console.log('Token submit clicked, token length:', mapboxToken.length);
+    if (mapboxToken && mapboxToken.startsWith('pk.')) {
+      console.log('Valid token format detected');
       setShowTokenInput(false);
-      initializeMap();
+      setTimeout(() => {
+        initializeMap();
+      }, 100);
+    } else {
+      console.error('Invalid token format - should start with pk.');
+      alert('Please enter a valid Mapbox token (should start with "pk.")');
     }
   };
 
@@ -69,6 +97,7 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
           <p className="text-muted-foreground mb-4">
             Please enter your Mapbox public token to display the map. 
             Get yours at <a href="https://mapbox.com" target="_blank" rel="noopener noreferrer" className="text-primary underline">mapbox.com</a>
+            <br /><small className="text-xs">Token should start with "pk."</small>
           </p>
           <div className="space-y-4">
             <Input
