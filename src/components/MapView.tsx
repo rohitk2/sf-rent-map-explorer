@@ -7,11 +7,12 @@ import { Card } from '@/components/ui/card';
 import { neighborhoods } from '@/data/neighborhoods';
 
 interface MapViewProps {
-  onPropertySelect: (property: any) => void;
+  onNeighborhoodSelect: (neighborhood: any) => void;
+  selectedNeighborhood: any;
   properties: any[];
 }
 
-const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
+const MapView: React.FC<MapViewProps> = ({ onNeighborhoodSelect, selectedNeighborhood, properties }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapboxToken, setMapboxToken] = useState('');
@@ -110,6 +111,20 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
             'line-opacity': 0.8
           }
         });
+
+        // Add click event to neighborhood layers
+        map.current!.on('click', `neighborhood-fill-${index}`, () => {
+          onNeighborhoodSelect(neighborhood);
+        });
+
+        // Change cursor to pointer when hovering over neighborhoods
+        map.current!.on('mouseenter', `neighborhood-fill-${index}`, () => {
+          map.current!.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.current!.on('mouseleave', `neighborhood-fill-${index}`, () => {
+          map.current!.getCanvas().style.cursor = '';
+        });
       });
 
       // Add property markers
@@ -122,9 +137,9 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
             .setLngLat([property.lng, property.lat])
             .addTo(map.current!);
 
-          marker.getElement().addEventListener('click', () => {
-            onPropertySelect(property);
-          });
+          // marker.getElement().addEventListener('click', () => {
+          //   onPropertySelect(property);
+          // });
           console.log(`Added marker ${index + 1}/${properties.length}`);
         } catch (error) {
           console.error(`Error adding marker for property ${property.id}:`, error);
@@ -207,6 +222,7 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
       {/* Neighborhood Legend */}
       <div className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs z-10 shadow-lg">
         <h3 className="text-sm font-semibold mb-3 text-foreground">Neighborhoods</h3>
+        <p className="text-xs text-muted-foreground mb-2">Click on any neighborhood to view details</p>
         <div className="space-y-2 max-h-64 overflow-y-auto">
           {neighborhoods.map((neighborhood, index) => (
             <div key={index} className="flex items-center gap-2">
@@ -219,6 +235,26 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
           ))}
         </div>
       </div>
+
+      {/* Neighborhood Info Panel */}
+      {selectedNeighborhood && (
+        <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-sm z-10 shadow-lg">
+          <div className="flex items-center gap-3 mb-3">
+            <div 
+              className="w-4 h-4 rounded-sm border border-border/20" 
+              style={{ backgroundColor: selectedNeighborhood.color }}
+            />
+            <h3 className="text-lg font-semibold text-foreground">{selectedNeighborhood.name}</h3>
+          </div>
+          <div className="space-y-2 text-sm text-muted-foreground">
+            <p><strong>Bounds:</strong></p>
+            <p>North: {selectedNeighborhood.bounds[1][0].toFixed(4)}</p>
+            <p>South: {selectedNeighborhood.bounds[0][0].toFixed(4)}</p>
+            <p>East: {selectedNeighborhood.bounds[1][1].toFixed(4)}</p>
+            <p>West: {selectedNeighborhood.bounds[0][1].toFixed(4)}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

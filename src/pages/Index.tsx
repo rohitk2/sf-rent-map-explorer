@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import MapView from '@/components/MapView';
-import PropertySidebar from '@/components/PropertySidebar';
+// import PropertySidebar from '@/components/PropertySidebar';
 import { properties } from '@/data/properties';
 
 const Index = () => {
-  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState(null);
 
-  const handlePropertySelect = (property: any) => {
-    setSelectedProperty(property);
+  const handleNeighborhoodSelect = (neighborhood: any) => {
+    setSelectedNeighborhood(neighborhood);
   };
 
   return (
     <div className="h-screen flex bg-background">
-      <PropertySidebar
+      {/* <PropertySidebar
         properties={properties}
         onPropertySelect={handlePropertySelect}
         selectedProperty={selectedProperty}
-      />
+      /> */}
       <div className="flex-1">
         <MapView
-          onPropertySelect={handlePropertySelect}
+          onNeighborhoodSelect={handleNeighborhoodSelect}
+          selectedNeighborhood={selectedNeighborhood}
           properties={properties}
         />
       </div>
