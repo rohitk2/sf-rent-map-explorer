@@ -16,6 +16,17 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
   const [mapboxToken, setMapboxToken] = useState('');
   const [showTokenInput, setShowTokenInput] = useState(true);
 
+  const getNeighborhoodColor = (address: string) => {
+    const lowerAddress = address.toLowerCase();
+    if (lowerAddress.includes('mission')) return '#ef4444';
+    if (lowerAddress.includes('castro')) return '#8b5cf6';
+    if (lowerAddress.includes('marina') || lowerAddress.includes('lombard')) return '#3b82f6';
+    if (lowerAddress.includes('noe valley')) return '#f97316';
+    if (lowerAddress.includes('sunset')) return '#22c55e';
+    if (lowerAddress.includes('soma')) return '#374151';
+    return '#6b7280'; // default gray
+  };
+
   const initializeMap = () => {
     console.log('Initializing map with token:', mapboxToken ? 'Token present' : 'No token');
     if (!mapContainer.current || !mapboxToken) {
