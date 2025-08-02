@@ -167,7 +167,28 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
 
   useEffect(() => {
     return () => {
-      map.current?.remove();
+      if (map.current) {
+        try {
+          // Check if map is loaded before removing
+          if (map.current.loaded()) {
+            map.current.remove();
+          } else {
+            // If not loaded, wait for load then remove
+            map.current.on('load', () => {
+              map.current?.remove();
+            });
+          }
+        } catch (error) {
+          console.warn('Error removing map:', error);
+          // Force remove if regular removal fails
+          try {
+            map.current.getContainer()?.remove();
+          } catch (e) {
+            console.warn('Could not remove map container:', e);
+          }
+        }
+        map.current = null;
+      }
     };
   }, []);
 
