@@ -221,6 +221,22 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, properties }) => {
   return (
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="absolute inset-0" />
+      
+      {/* Neighborhood Legend */}
+      <div className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs z-10 shadow-lg">
+        <h3 className="text-sm font-semibold mb-3 text-foreground">Neighborhoods</h3>
+        <div className="space-y-2 max-h-64 overflow-y-auto">
+          {neighborhoods.map((neighborhood, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <div 
+                className="w-3 h-3 rounded-sm border border-border/20" 
+                style={{ backgroundColor: neighborhood.color }}
+              />
+              <span className="text-xs text-muted-foreground">{neighborhood.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
