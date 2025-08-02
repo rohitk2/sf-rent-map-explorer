@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import MapView from '@/components/MapView';
 // import PropertySidebar from '@/components/PropertySidebar';
-import { properties } from '@/data/properties';
+// import { properties } from '@/data/properties';
+import { foodDistributionCenters } from '@/data/food-distribution-centers';
 
 const Index = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -21,7 +22,7 @@ const Index = () => {
         <MapView
           onPropertySelect={handlePropertySelect}
           selectedProperty={selectedProperty}
-          properties={properties}
+          properties={foodDistributionCenters}
         />
       </div>
     </div>
