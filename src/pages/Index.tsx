@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MapView from '@/components/MapView';
 import Chatbot from '@/components/Chatbot';
+import Header from '@/components/Header';
 // import PropertySidebar from '@/components/PropertySidebar';
 // import { properties } from '@/data/properties';
 import { foodDistributionCenters } from '@/data/food-distribution-centers';
@@ -17,13 +18,14 @@ const Index = () => {
   };
 
   return (
-    <div className="h-screen flex bg-background">
+    <div className="h-screen flex flex-col bg-background">
+      <Header />
       {/* <PropertySidebar
         properties={properties}
         onPropertySelect={handlePropertySelect}
         selectedProperty={selectedProperty}
       /> */}
-      <div className="flex-1">
+      <div className="flex flex-1">
         <MapView
           onPropertySelect={handlePropertySelect}
           selectedProperty={selectedProperty}
