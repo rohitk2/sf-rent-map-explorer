@@ -138,6 +138,7 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
               case 'hospital': return { icon: '🏥', className: 'hospital-marker' };
               case 'restroom_shower': return { icon: 'shower', className: 'restroom-shower-marker' };
               case 'restroom': return { icon: 'restroom', className: 'restroom-marker' };
+              case 'laundromat': return { icon: '🧺', className: 'laundromat-marker' };
               default: return { icon: '🍽️', className: 'food-marker' };
             }
           };
@@ -279,7 +280,10 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">
                 {selectedProperty.type === 'shelter' ? '🏠' : 
-                 selectedProperty.type === 'hospital' ? '🏥' : '🍽️'}
+                 selectedProperty.type === 'hospital' ? '🏥' : 
+                 selectedProperty.type === 'laundromat' ? '🧺' :
+                 selectedProperty.type === 'restroom_shower' ? '🚿' :
+                 selectedProperty.type === 'restroom' ? '🚻' : '🍽️'}
               </span>
               <span className="text-sm font-medium text-green-600">
                 {selectedProperty.type === 'hospital' ? 'Medical Services' : 'Free Service'}
@@ -290,7 +294,10 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
               <div className="flex gap-3 text-muted-foreground">
                 <span>
                   {selectedProperty.type === 'shelter' ? 'Shelter Services' : 
-                   selectedProperty.type === 'hospital' ? 'Hospital' : 'Food Distribution Center'}
+                   selectedProperty.type === 'hospital' ? 'Hospital' : 
+                   selectedProperty.type === 'laundromat' ? 'Laundry Services' :
+                   selectedProperty.type === 'restroom_shower' ? 'Restroom with Shower' :
+                   selectedProperty.type === 'restroom' ? 'Public Restroom' : 'Food Distribution Center'}
                 </span>
               </div>
               {selectedProperty.inventory && (

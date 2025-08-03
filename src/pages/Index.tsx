@@ -6,6 +6,7 @@ import { foodDistributionCenters } from '@/data/food-distribution-centers';
 import { shelters } from '@/data/shelters';
 import { hospitals } from '@/data/hospitals';
 import { restrooms } from '@/data/restrooms';
+import { laundromats } from '@/data/laundromats';
 
 const Index = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -25,7 +26,7 @@ const Index = () => {
         <MapView
           onPropertySelect={handlePropertySelect}
           selectedProperty={selectedProperty}
-          properties={[...foodDistributionCenters, ...shelters, ...hospitals, ...restrooms]}
+          properties={[...foodDistributionCenters, ...shelters, ...hospitals, ...restrooms, ...laundromats]}
         />
       </div>
     </div>
