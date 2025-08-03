@@ -132,9 +132,16 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
         try {
           // Create custom icon element based on type
           const el = document.createElement('div');
-          const isShelter = property.type === 'shelter';
-          el.className = isShelter ? 'shelter-marker' : 'food-marker';
-          el.innerHTML = isShelter ? '🏠' : '🍽️';
+          const getIconAndClass = (type: string) => {
+            switch (type) {
+              case 'shelter': return { icon: '🏠', className: 'shelter-marker' };
+              case 'hospital': return { icon: '🏥', className: 'hospital-marker' };
+              default: return { icon: '🍽️', className: 'food-marker' };
+            }
+          };
+          const { icon, className } = getIconAndClass(property.type);
+          el.className = className;
+          el.innerHTML = icon;
           el.style.cssText = `
             font-size: 24px;
             cursor: pointer;
@@ -259,13 +266,21 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-2xl">{selectedProperty.type === 'shelter' ? '🏠' : '🍽️'}</span>
-              <span className="text-sm font-medium text-green-600">Free Service</span>
+              <span className="text-2xl">
+                {selectedProperty.type === 'shelter' ? '🏠' : 
+                 selectedProperty.type === 'hospital' ? '🏥' : '🍽️'}
+              </span>
+              <span className="text-sm font-medium text-green-600">
+                {selectedProperty.type === 'hospital' ? 'Medical Services' : 'Free Service'}
+              </span>
             </div>
             <div className="space-y-1 text-xs">
               <p className="text-muted-foreground text-xs">{selectedProperty.address}</p>
               <div className="flex gap-3 text-muted-foreground">
-                <span>{selectedProperty.type === 'shelter' ? 'Shelter Services' : 'Food Distribution Center'}</span>
+                <span>
+                  {selectedProperty.type === 'shelter' ? 'Shelter Services' : 
+                   selectedProperty.type === 'hospital' ? 'Hospital' : 'Food Distribution Center'}
+                </span>
               </div>
             </div>
           </div>
