@@ -136,14 +136,23 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
             switch (type) {
               case 'shelter': return { icon: '🏠', className: 'shelter-marker' };
               case 'hospital': return { icon: '🏥', className: 'hospital-marker' };
-              case 'restroom_shower': return { icon: '🚿', className: 'restroom-shower-marker' };
-              case 'restroom': return { icon: '🚻', className: 'restroom-marker' };
+              case 'restroom_shower': return { icon: 'shower', className: 'restroom-shower-marker' };
+              case 'restroom': return { icon: 'restroom', className: 'restroom-marker' };
               default: return { icon: '🍽️', className: 'food-marker' };
             }
           };
           const { icon, className } = getIconAndClass(property.type);
           el.className = className;
-          el.innerHTML = icon;
+          
+          // Handle Lucide icons vs emoji
+          if (icon === 'shower') {
+            el.innerHTML = `<div style="background: white; border-radius: 50%; padding: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shower-head"><path d="m4 4 2.5 2.5"/><path d="M13.5 6.5a4.95 4.95 0 0 0-7 7"/><path d="M15 5 5 15"/><path d="M14 17v.01"/><path d="M10 16v.01"/><path d="M13 13v.01"/><path d="M16 10v.01"/><path d="M11 20v.01"/><path d="M17 14v.01"/><path d="M20 11v.01"/></svg></div>`;
+          } else if (icon === 'restroom') {
+            el.innerHTML = `<div style="background: white; border-radius: 50%; padding: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 21-2-2-2-2"/><path d="M16 8h6"/></svg></div>`;
+          } else {
+            el.innerHTML = icon;
+          }
+          
           el.style.cssText = `
             font-size: 24px;
             cursor: pointer;
