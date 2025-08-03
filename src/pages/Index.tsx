@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MapView from '@/components/MapView';
+import Chatbot from '@/components/Chatbot';
 // import PropertySidebar from '@/components/PropertySidebar';
 // import { properties } from '@/data/properties';
 import { foodDistributionCenters } from '@/data/food-distribution-centers';
@@ -29,6 +30,7 @@ const Index = () => {
           properties={[...foodDistributionCenters, ...shelters, ...hospitals, ...restrooms, ...laundromats]}
         />
       </div>
+      <Chatbot />
     </div>
   );
 };
