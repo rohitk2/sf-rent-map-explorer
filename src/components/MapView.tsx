@@ -130,10 +130,11 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
       console.log('Adding property markers:', properties.length);
       properties.forEach((property, index) => {
         try {
-          // Create custom food icon element
+          // Create custom icon element based on type
           const el = document.createElement('div');
-          el.className = 'food-marker';
-          el.innerHTML = '🍽️';
+          const isShelter = property.type === 'shelter';
+          el.className = isShelter ? 'shelter-marker' : 'food-marker';
+          el.innerHTML = isShelter ? '🏠' : '🍽️';
           el.style.cssText = `
             font-size: 24px;
             cursor: pointer;
@@ -258,13 +259,13 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-2xl">🍽️</span>
-              <span className="text-sm font-medium text-green-600">Free Service/mo</span>
+              <span className="text-2xl">{selectedProperty.type === 'shelter' ? '🏠' : '🍽️'}</span>
+              <span className="text-sm font-medium text-green-600">Free Service</span>
             </div>
             <div className="space-y-1 text-xs">
               <p className="text-muted-foreground text-xs">{selectedProperty.address}</p>
               <div className="flex gap-3 text-muted-foreground">
-                <span>Food Distribution Center</span>
+                <span>{selectedProperty.type === 'shelter' ? 'Shelter Services' : 'Food Distribution Center'}</span>
               </div>
             </div>
           </div>
