@@ -1,3 +1,4 @@
+// Food Distribution Centers data for San Francisco
 export const foodDistributionCenters = [
   {
     id: '1',
@@ -12,6 +13,16 @@ export const foodDistributionCenters = [
     lng: -122.4200077596358,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 76,
+      "bananas": 76,
+      "bottled water": 11,
+      "granola bars": 67,
+      "diapers": 61,
+      "tampons": 9,
+      "soap": 47,
+      "instant ramen": 18
+    }
   },
   {
     id: '2',
@@ -26,6 +37,16 @@ export const foodDistributionCenters = [
     lng: -122.41924991915745,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 88,
+      "bananas": 12,
+      "bottled water": 93,
+      "granola bars": 56,
+      "diapers": 7,
+      "tampons": 86,
+      "soap": 8,
+      "instant ramen": 99
+    }
   },
   {
     id: '3',
@@ -40,6 +61,16 @@ export const foodDistributionCenters = [
     lng: -122.41905913265019,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 99,
+      "bananas": 56,
+      "bottled water": 71,
+      "granola bars": 82,
+      "diapers": 94,
+      "tampons": 8,
+      "soap": 64,
+      "instant ramen": 31
+    }
   },
   {
     id: '4',
@@ -54,6 +85,16 @@ export const foodDistributionCenters = [
     lng: -122.41374211915793,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 75,
+      "bananas": 97,
+      "bottled water": 21,
+      "granola bars": 35,
+      "diapers": 82,
+      "tampons": 72,
+      "soap": 23,
+      "instant ramen": 69
+    }
   },
   {
     id: '5',
@@ -68,6 +109,16 @@ export const foodDistributionCenters = [
     lng: -122.41407635963589,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 93,
+      "bananas": 47,
+      "bottled water": 54,
+      "granola bars": 83,
+      "diapers": 75,
+      "tampons": 62,
+      "soap": 68,
+      "instant ramen": 51
+    }
   },
   {
     id: '6',
@@ -82,6 +133,16 @@ export const foodDistributionCenters = [
     lng: -122.41316963080006,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 98,
+      "bananas": 42,
+      "bottled water": 88,
+      "granola bars": 36,
+      "diapers": 0,
+      "tampons": 69,
+      "soap": 79,
+      "instant ramen": 9
+    }
   },
   {
     id: '7',
@@ -96,6 +157,16 @@ export const foodDistributionCenters = [
     lng: -122.41312151730732,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 2,
+      "bananas": 88,
+      "bottled water": 88,
+      "granola bars": 22,
+      "diapers": 56,
+      "tampons": 2,
+      "soap": 54,
+      "instant ramen": 0
+    }
   },
   {
     id: '8',
@@ -110,6 +181,16 @@ export const foodDistributionCenters = [
     lng: -122.4131804461431,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 31,
+      "bananas": 93,
+      "bottled water": 83,
+      "granola bars": 98,
+      "diapers": 98,
+      "tampons": 7,
+      "soap": 28,
+      "instant ramen": 36
+    }
   },
   {
     id: '9',
@@ -124,6 +205,16 @@ export const foodDistributionCenters = [
     lng: -122.4116016903219,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 29,
+      "bananas": 0,
+      "bottled water": 41,
+      "granola bars": 39,
+      "diapers": 74,
+      "tampons": 48,
+      "soap": 90,
+      "instant ramen": 7
+    }
   },
   {
     id: '10',
@@ -138,6 +229,16 @@ export const foodDistributionCenters = [
     lng: -122.41213693265023,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 56,
+      "bananas": 28,
+      "bottled water": 86,
+      "granola bars": 87,
+      "diapers": 7,
+      "tampons": 89,
+      "soap": 68,
+      "instant ramen": 61
+    }
   },
   {
     id: '11',
@@ -152,6 +253,16 @@ export const foodDistributionCenters = [
     lng: -122.41374100196424,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 69,
+      "bananas": 72,
+      "bottled water": 20,
+      "granola bars": 65,
+      "diapers": 39,
+      "tampons": 0,
+      "soap": 49,
+      "instant ramen": 34
+    }
   },
   {
     id: '12',
@@ -166,6 +277,16 @@ export const foodDistributionCenters = [
     lng: -122.41168699032177,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 20,
+      "bananas": 32,
+      "bottled water": 35,
+      "granola bars": 91,
+      "diapers": 81,
+      "tampons": 99,
+      "soap": 32,
+      "instant ramen": 70
+    }
   },
   {
     id: '13',
@@ -180,6 +301,16 @@ export const foodDistributionCenters = [
     lng: -122.41101378847134,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 45,
+      "bananas": 62,
+      "bottled water": 38,
+      "granola bars": 96,
+      "diapers": 11,
+      "tampons": 35,
+      "soap": 85,
+      "instant ramen": 42
+    }
   },
   {
     id: '14',
@@ -194,6 +325,16 @@ export const foodDistributionCenters = [
     lng: -122.40780404799354,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 65,
+      "bananas": 87,
+      "bottled water": 9,
+      "granola bars": 86,
+      "diapers": 24,
+      "tampons": 36,
+      "soap": 7,
+      "instant ramen": 51
+    }
   },
   {
     id: '15',
@@ -208,6 +349,16 @@ export const foodDistributionCenters = [
     lng: -122.40752718847162,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 64,
+      "bananas": 13,
+      "bottled water": 98,
+      "granola bars": 0,
+      "diapers": 39,
+      "tampons": 86,
+      "soap": 51,
+      "instant ramen": 88
+    }
   },
   {
     id: '16',
@@ -222,6 +373,16 @@ export const foodDistributionCenters = [
     lng: -122.40076623265027,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
+    inventory: {
+      "peanut butter": 63,
+      "bananas": 89,
+      "bottled water": 83,
+      "granola bars": 83,
+      "diapers": 0,
+      "tampons": 81,
+      "soap": 73,
+      "instant ramen": 27
+    }
   },
   {
     id: '17',
@@ -236,5 +397,15 @@ export const foodDistributionCenters = [
     lng: -122.40841713079965,
     amenities: ['Food Distribution', 'Community Services'],
     type: 'food-center',
-  },
+    inventory: {
+      "peanut butter": 50,
+      "bananas": 65,
+      "bottled water": 92,
+      "granola bars": 44,
+      "diapers": 88,
+      "tampons": 98,
+      "soap": 11,
+      "instant ramen": 13
+    }
+  }
 ];

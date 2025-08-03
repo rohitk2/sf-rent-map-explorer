@@ -282,6 +282,21 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
                    selectedProperty.type === 'hospital' ? 'Hospital' : 'Food Distribution Center'}
                 </span>
               </div>
+              {selectedProperty.inventory && (
+                <div className="mt-3 pt-2 border-t border-border/20">
+                  <h4 className="text-xs font-medium text-foreground mb-2">Available Items</h4>
+                  <div className="grid grid-cols-2 gap-1 text-xs">
+                    {Object.entries(selectedProperty.inventory).map(([item, quantity]) => (
+                      <div key={item} className="flex justify-between">
+                        <span className="text-muted-foreground capitalize">{item}:</span>
+                        <span className={`font-medium ${quantity === 0 ? 'text-red-500' : 'text-green-600'}`}>
+                          {String(quantity)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
