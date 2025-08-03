@@ -13,7 +13,7 @@ serve(async (req) => {
   try {
     const { message, messages } = await req.json()
     
-    const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY')
+    const GEMINI_API_KEY = Deno.env.get('AIzaSyAEVqQ2NMzE4tl-p7jcznMosS-d6SZVebs')
     if (!GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY not found in environment variables')
     }
