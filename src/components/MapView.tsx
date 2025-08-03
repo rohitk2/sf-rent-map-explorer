@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { neighborhoods } from '@/data/neighborhoods';
+// import { neighborhoods } from '@/data/neighborhoods';
 
 interface MapViewProps {
   onPropertySelect: (property: any) => void;
@@ -61,70 +61,70 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
         'top-right'
       );
 
-      // Add neighborhood overlays
-      neighborhoods.forEach((neighborhood, index) => {
-        const [[southLat, westLng], [northLat, eastLng]] = neighborhood.bounds;
-        
-        // Create rectangle coordinates
-        const coordinates = [
-          [westLng, southLat], // southwest
-          [eastLng, southLat], // southeast
-          [eastLng, northLat], // northeast
-          [westLng, northLat], // northwest
-          [westLng, southLat]  // close the polygon
-        ];
+      // Add neighborhood overlays - COMMENTED OUT
+      // neighborhoods.forEach((neighborhood, index) => {
+      //   const [[southLat, westLng], [northLat, eastLng]] = neighborhood.bounds;
+      //   
+      //   // Create rectangle coordinates
+      //   const coordinates = [
+      //     [westLng, southLat], // southwest
+      //     [eastLng, southLat], // southeast
+      //     [eastLng, northLat], // northeast
+      //     [westLng, northLat], // northwest
+      //     [westLng, southLat]  // close the polygon
+      //   ];
 
-        // Add source for this neighborhood
-        map.current!.addSource(`neighborhood-${index}`, {
-          type: 'geojson',
-          data: {
-            type: 'Feature',
-            geometry: {
-              type: 'Polygon',
-              coordinates: [coordinates]
-            },
-            properties: {
-              name: neighborhood.name
-            }
-          }
-        });
+      //   // Add source for this neighborhood
+      //   map.current!.addSource(`neighborhood-${index}`, {
+      //     type: 'geojson',
+      //     data: {
+      //       type: 'Feature',
+      //       geometry: {
+      //         type: 'Polygon',
+      //         coordinates: [coordinates]
+      //       },
+      //       properties: {
+      //         name: neighborhood.name
+      //       }
+      //     }
+      //   });
 
-        // Add fill layer
-        map.current!.addLayer({
-          id: `neighborhood-fill-${index}`,
-          type: 'fill',
-          source: `neighborhood-${index}`,
-          paint: {
-            'fill-color': neighborhood.color,
-            'fill-opacity': 0.2
-          }
-        });
+      //   // Add fill layer
+      //   map.current!.addLayer({
+      //     id: `neighborhood-fill-${index}`,
+      //     type: 'fill',
+      //     source: `neighborhood-${index}`,
+      //     paint: {
+      //       'fill-color': neighborhood.color,
+      //       'fill-opacity': 0.2
+      //     }
+      //   });
 
-        // Add border layer
-        map.current!.addLayer({
-          id: `neighborhood-border-${index}`,
-          type: 'line',
-          source: `neighborhood-${index}`,
-          paint: {
-            'line-color': neighborhood.color,
-            'line-width': 2,
-            'line-opacity': 0.8
-          }
-        });
+      //   // Add border layer
+      //   map.current!.addLayer({
+      //     id: `neighborhood-border-${index}`,
+      //     type: 'line',
+      //     source: `neighborhood-${index}`,
+      //     paint: {
+      //       'line-color': neighborhood.color,
+      //       'line-width': 2,
+      //       'line-opacity': 0.8
+      //     }
+      //   });
 
-        // Remove click events for neighborhoods
-        // map.current!.on('click', `neighborhood-fill-${index}`, () => {
-        //   onNeighborhoodSelect(neighborhood);
-        // });
+      //   // Remove click events for neighborhoods
+      //   // map.current!.on('click', `neighborhood-fill-${index}`, () => {
+      //   //   onNeighborhoodSelect(neighborhood);
+      //   // });
 
-        // map.current!.on('mouseenter', `neighborhood-fill-${index}`, () => {
-        //   map.current!.getCanvas().style.cursor = 'pointer';
-        // });
+      //   // map.current!.on('mouseenter', `neighborhood-fill-${index}`, () => {
+      //   //   map.current!.getCanvas().style.cursor = 'pointer';
+      //   // });
 
-        // map.current!.on('mouseleave', `neighborhood-fill-${index}`, () => {
-        //   map.current!.getCanvas().style.cursor = '';
-        // });
-      });
+      //   // map.current!.on('mouseleave', `neighborhood-fill-${index}`, () => {
+      //   //   map.current!.getCanvas().style.cursor = '';
+      //   // });
+      // });
 
       // Add property markers
       console.log('Adding property markers:', properties.length);
@@ -247,8 +247,8 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="absolute inset-0" />
       
-      {/* Neighborhood Legend */}
-      <div className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs z-10 shadow-lg">
+      {/* Neighborhood Legend - COMMENTED OUT */}
+      {/* <div className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs z-10 shadow-lg">
         <h3 className="text-sm font-semibold mb-3 text-foreground">Neighborhoods</h3>
         <p className="text-xs text-muted-foreground mb-2">Click on property pins to view details</p>
         <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -262,7 +262,7 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Property Info Panel */}
       {selectedProperty && (
