@@ -30,7 +30,7 @@ const Chatbot = () => {
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'your-gemini-api-key-here') {
+    if (!GEMINI_API_KEY) {
       toast({
         title: "API Key Missing",
         description: "Please add your Gemini API key in src/config/gemini.ts",
