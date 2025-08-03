@@ -1,0 +1,5 @@
+name,address,lat,lng,type
+Restroom +Shower,"477 O'Farrell St, San Francisco, CA 94102",37.78688162256144,-122.41241991911743,restroom_shower
+Restroom,"910 Market St, San Francisco, CA 94102",37.78545714543691,-122.40769923176309,restroom
+Restroom + Shower,"51 Sherman St, San Francisco, CA 94103",37.77799515001524,-122.40589678750051,restroom_shower
+Restroom,"333 Post St, San Francisco, CA 94108",37.78884871249861,-122.4079567238006,restroom

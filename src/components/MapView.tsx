@@ -136,6 +136,8 @@ const MapView: React.FC<MapViewProps> = ({ onPropertySelect, selectedProperty, p
             switch (type) {
               case 'shelter': return { icon: '🏠', className: 'shelter-marker' };
               case 'hospital': return { icon: '🏥', className: 'hospital-marker' };
+              case 'restroom_shower': return { icon: '🚿', className: 'restroom-shower-marker' };
+              case 'restroom': return { icon: '🚻', className: 'restroom-marker' };
               default: return { icon: '🍽️', className: 'food-marker' };
             }
           };
