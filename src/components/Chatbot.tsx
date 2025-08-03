@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { GEMINI_API_KEY, GEMINI_API_URL } from '@/config/gemini';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Message {
   id: string;
@@ -30,15 +30,6 @@ const Chatbot = () => {
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
-    if (!GEMINI_API_KEY) {
-      toast({
-        title: "API Key Missing",
-        description: "Please add your Gemini API key in src/config/gemini.ts",
-        variant: "destructive",
-      });
-      return;
-    }
-
     const userMessage: Message = {
       id: Date.now().toString(),
       text: inputValue,
@@ -52,46 +43,18 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      // Build conversation history
-      const conversationHistory = messages.map((msg) => ({
-        role: msg.isUser ? 'user' : 'model',
-        parts: [{ text: msg.text }]
-      }));
-
-      // Add current message
-      conversationHistory.push({
-        role: 'user',
-        parts: [{ text: currentInput }]
+      const { data, error } = await supabase.functions.invoke('chat', {
+        body: {
+          message: currentInput,
+          messages: messages
+        }
       });
 
-      const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: conversationHistory,
-          generationConfig: {
-            temperature: 0.7,
-            topK: 40,
-            topP: 0.95,
-            maxOutputTokens: 1024,
-          },
-          systemInstruction: {
-            parts: [{
-              text: "You are a helpful assistant for HopeSF, a platform that helps people in San Francisco find essential resources like food distribution centers, shelters, hospitals, restrooms, and laundromats. Be friendly, empathetic, and provide practical guidance. Keep responses concise but helpful."
-            }]
-          }
-        }),
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
+      if (error) {
+        throw new Error(error.message);
       }
 
-      const data = await response.json();
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
+      const reply = data?.response || "Sorry, I couldn't generate a response.";
       
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),

@@ -13,7 +13,7 @@ serve(async (req) => {
   try {
     const { message, messages } = await req.json()
     
-    const GEMINI_API_KEY = Deno.env.get('AIzaSyAEVqQ2NMzE4tl-p7jcznMosS-d6SZVebs')
+    const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY')
     if (!GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY not found in environment variables')
     }
@@ -31,7 +31,7 @@ serve(async (req) => {
     })
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: 'POST',
         headers: {
