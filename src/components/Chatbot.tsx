@@ -43,10 +43,17 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
+      // Serialize messages for the edge function (remove timestamp to avoid serialization issues)
+      const serializedMessages = messages.map(msg => ({
+        id: msg.id,
+        text: msg.text,
+        isUser: msg.isUser
+      }));
+
       const { data, error } = await supabase.functions.invoke('chat', {
         body: {
           message: currentInput,
-          messages: messages
+          messages: serializedMessages
         }
       });
 
