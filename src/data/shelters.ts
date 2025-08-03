@@ -5,7 +5,13 @@ export const shelters = [
     address: "1031 Franklin St suite 207, San Francisco, CA 94109",
     lat: 37.78691977779218,
     lng: -122.42328795782682,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 956,
+      "beds filled": 717,
+      "waitlist": 0,
+      "showers": 8
+    }
   },
   {
     id: 2,
@@ -13,7 +19,13 @@ export const shelters = [
     address: "37 Grove St, San Francisco, CA 94102",
     lat: 37.780814685664794,
     lng: -122.41590651882342,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 999,
+      "beds filled": 999,
+      "waitlist": 45,
+      "showers": 3
+    }
   },
   {
     id: 3,
@@ -21,7 +33,13 @@ export const shelters = [
     address: "1001 Polk St, San Francisco, CA 94109",
     lat: 37.788819036932935,
     lng: -122.42036971449991,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 579,
+      "beds filled": 434,
+      "waitlist": 0,
+      "showers": 6
+    }
   },
   {
     id: 4,
@@ -29,7 +47,13 @@ export const shelters = [
     address: "280 Turk St Second Floor, San Francisco, CA 94102",
     lat: 37.78502046983855,
     lng: -122.41710814842861,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 416,
+      "beds filled": 312,
+      "waitlist": 0,
+      "showers": 7
+    }
   },
   {
     id: 5,
@@ -37,7 +61,13 @@ export const shelters = [
     address: "201 8th St, San Francisco, CA 94103",
     lat: 37.77810114951372,
     lng: -122.41110000040258,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 367,
+      "beds filled": 275,
+      "waitlist": 0,
+      "showers": 1
+    }
   },
   {
     id: 6,
@@ -45,7 +75,13 @@ export const shelters = [
     address: "1089 Mission St, San Francisco, CA 94103",
     lat: 37.78146160481901,
     lng: -122.41114691871313,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 743,
+      "beds filled": 557,
+      "waitlist": 0,
+      "showers": 7
+    }
   },
   {
     id: 7,
@@ -53,7 +89,13 @@ export const shelters = [
     address: "181 6th St, San Francisco, CA 94103",
     lat: 37.78254322680016,
     lng: -122.40738343438393,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 549,
+      "beds filled": 412,
+      "waitlist": 0,
+      "showers": 9
+    }
   },
   {
     id: 8,
@@ -61,7 +103,13 @@ export const shelters = [
     address: "1171 Mission St, San Francisco, CA 94103",
     lat: 37.78065037794602,
     lng: -122.4133707958167,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 739,
+      "beds filled": 554,
+      "waitlist": 0,
+      "showers": 6
+    }
   },
   {
     id: 9,
@@ -69,7 +117,13 @@ export const shelters = [
     address: "146 Leavenworth St, San Francisco, CA 94102",
     lat: 37.784571225352785,
     lng: -122.4137129307557,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 786,
+      "beds filled": 590,
+      "waitlist": 0,
+      "showers": 4
+    }
   },
   {
     id: 10,
@@ -77,7 +131,13 @@ export const shelters = [
     address: "525 5th St, San Francisco, CA 94107",
     lat: 37.7797039353415,
     lng: -122.39985646572559,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 566,
+      "beds filled": 566,
+      "waitlist": 54,
+      "showers": 8
+    }
   },
   {
     id: 11,
@@ -85,7 +145,13 @@ export const shelters = [
     address: "49 Powell St, San Francisco, CA 94102",
     lat: 37.787410329839325,
     lng: -122.40840983920096,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 857,
+      "beds filled": 643,
+      "waitlist": 0,
+      "showers": 8
+    }
   },
   {
     id: 12,
@@ -93,7 +159,13 @@ export const shelters = [
     address: "1065 Sutter St, San Francisco, CA 94109",
     lat: 37.790654887124774,
     lng: -122.41747641508489,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 707,
+      "beds filled": 530,
+      "waitlist": 0,
+      "showers": 1
+    }
   },
   {
     id: 13,
@@ -101,6 +173,12 @@ export const shelters = [
     address: "488 Ellis St, San Francisco, CA 94102",
     lat: 37.788086291021926,
     lng: -122.41439720063373,
-    type: "shelter"
+    type: "shelter",
+    inventory: {
+      "total beds": 231,
+      "beds filled": 173,
+      "waitlist": 0,
+      "showers": 4
+    }
   }
 ];
