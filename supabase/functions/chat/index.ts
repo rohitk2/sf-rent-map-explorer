@@ -11,10 +11,15 @@ serve(async (req) => {
   }
 
   try {
+    console.log('Chat function called with method:', req.method)
     const { message, messages } = await req.json()
+    console.log('Received message:', message)
+    console.log('Received messages count:', messages?.length)
     
     const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY')
+    console.log('GEMINI_API_KEY exists:', !!GEMINI_API_KEY)
     if (!GEMINI_API_KEY) {
+      console.error('GEMINI_API_KEY not found in environment variables')
       throw new Error('GEMINI_API_KEY not found in environment variables')
     }
 
