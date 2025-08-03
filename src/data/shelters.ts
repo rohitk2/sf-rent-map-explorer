@@ -8,7 +8,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 956,
-      "beds filled": 717,
+      "beds filled": 191, // 20% capacity
       "waitlist": 0,
       "showers": 8
     }
@@ -22,7 +22,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 999,
-      "beds filled": 999,
+      "beds filled": 849, // 85% capacity (high variability)
       "waitlist": 45,
       "showers": 3
     }
@@ -36,7 +36,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 579,
-      "beds filled": 434,
+      "beds filled": 116, // 20% capacity
       "waitlist": 0,
       "showers": 6
     }
@@ -50,7 +50,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 416,
-      "beds filled": 312,
+      "beds filled": 145, // 35% capacity (low variability)
       "waitlist": 0,
       "showers": 7
     }
@@ -64,7 +64,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 367,
-      "beds filled": 275,
+      "beds filled": 73, // 20% capacity
       "waitlist": 0,
       "showers": 1
     }
@@ -78,7 +78,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 743,
-      "beds filled": 557,
+      "beds filled": 594, // 80% capacity (high variability)
       "waitlist": 0,
       "showers": 7
     }
@@ -92,7 +92,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 549,
-      "beds filled": 412,
+      "beds filled": 302, // 55% capacity (moderate variability)
       "waitlist": 0,
       "showers": 9
     }
@@ -106,7 +106,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 739,
-      "beds filled": 554,
+      "beds filled": 148, // 20% capacity
       "waitlist": 0,
       "showers": 6
     }
@@ -120,7 +120,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 786,
-      "beds filled": 590,
+      "beds filled": 346, // 44% capacity (low variability)
       "waitlist": 0,
       "showers": 4
     }
@@ -148,7 +148,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 857,
-      "beds filled": 643,
+      "beds filled": 171, // 20% capacity
       "waitlist": 0,
       "showers": 8
     }
@@ -162,7 +162,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 707,
-      "beds filled": 530,
+      "beds filled": 99, // 14% capacity (very low)
       "waitlist": 0,
       "showers": 1
     }
@@ -176,7 +176,7 @@ export const shelters = [
     type: "shelter",
     inventory: {
       "total beds": 231,
-      "beds filled": 173,
+      "beds filled": 162, // 70% capacity (moderate high)
       "waitlist": 0,
       "showers": 4
     }
