@@ -19,7 +19,7 @@ const Chatbot = () => {
 
       {/* Chatbot Panel */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 h-96 z-50">
+        <div className="fixed bottom-24 right-6 w-96 h-[500px] z-50">
           <Card className="h-full shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-lg">Chat Assistant</CardTitle>
@@ -43,9 +43,8 @@ const Chatbot = () => {
                   type="text"
                   placeholder="Type your message..."
                   className="flex-1 px-3 py-2 border rounded-md text-sm"
-                  disabled
                 />
-                <Button size="sm" disabled>
+                <Button size="sm">
                   Send
                 </Button>
               </div>
